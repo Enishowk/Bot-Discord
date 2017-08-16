@@ -5,7 +5,7 @@
   "main": "bot.js",
   "dependencies": {
     "cheerio": "^0.22.0",
-    "discord.js": "^10.0.1",
+    "discord.js": "^11.1.0",
     "eslint": "^3.17.1",
     "moment": "^2.17.1",
     "node-cron": "^1.1.2",
@@ -16,7 +16,7 @@
     "request": "^2.81.0",
     "unique-random-array": "^1.0.0",
     "unirest": "^0.5.1",
-    "ytdl-core": "^0.7.20"
+    "ytdl-core": "^0.7.24"
   },
   "devDependencies": {},
   "scripts": {
