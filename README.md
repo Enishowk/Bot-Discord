@@ -21,9 +21,13 @@ Check [PM2 Wiki](https://github.com/Unitech/pm2/wiki) for more command.
 
 * .sb [subreddit] - Get random picture from Subreddit (Default 'aww' subreddit).
 * .play [sound] - Play a sound in Voice channel.
+* .yt [link] - Play a video from YouTube.
+* .stop - Kick bot from voice channel.
 * .gouter - Joke command for french.
 * .say [message] - Bot repeat your message.
-* .bm - Specific command to get a picture from the website bonjourmadame.fr. Don't forget to change ID of your channel in function.
+* .rand [number] - Simple rand command.
+* .wiki [subject] - Link page from wikipedia.
+* .bm - Specific command to get a picture from the website bonjourmadame.fr. Don't forget to change ID of your NSFW channel in config file.
 * .help [sound] - Command list. Sound list with sound param.
 
 [Discord JS](https://github.com/hydrabolt/discord.js/)

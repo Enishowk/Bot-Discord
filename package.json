@@ -1,27 +1,27 @@
 {
-  "name": "bot",
-  "version": "1.0.0",
-  "description": "bot for Discord",
-  "main": "bot.js",
-  "dependencies": {
-    "cheerio": "^0.22.0",
-    "discord.js": "^11.1.0",
-    "eslint": "^3.17.1",
-    "moment": "^2.17.1",
-    "node-cron": "^1.1.2",
-    "node-opus": "^0.2.4",
-    "pm2": "^2.4.2",
-    "random-puppy": "^1.1.0",
-    "read-last-lines": "^1.1.0",
-    "request": "^2.81.0",
-    "unique-random-array": "^1.0.0",
-    "unirest": "^0.5.1",
-    "ytdl-core": "^0.7.24"
-  },
-  "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Eni",
-  "license": "ISC"
+    "name": "bot",
+    "version": "1.1.0",
+    "description": "Bot for Discord",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "bot": "node bot.js",
+        "pm2:bot": "pm2 start bot.js"
+    },
+    "author": "Kenshineuh",
+    "license": "ISC",
+    "dependencies": {
+        "cheerio": "^1.0.0-rc.2",
+        "discord.js": "^11.2.1",
+        "discord.js-arbitrary-ffmpeg": "^1.0.0",
+        "ffmpeg": "0.0.4",
+        "ffmpeg-binaries": "^3.2.2-3",
+        "node-cron": "^1.2.1",
+        "opusscript": "0.0.4",
+        "random-puppy": "^1.1.0",
+        "request": "^2.83.0",
+        "unique-random-array": "^1.0.0",
+        "unirest": "^0.5.1",
+        "ytdl-core": "^0.18.1"
+    }
 }
