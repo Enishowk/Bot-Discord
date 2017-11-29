@@ -28,6 +28,7 @@ Check [PM2 Wiki](https://github.com/Unitech/pm2/wiki) for more command.
 * .rand [number] - Simple rand command.
 * .wiki [subject] - Link page from wikipedia.
 * .bm - Specific command to get a picture from the website bonjourmadame.fr. Don't forget to change ID of your NSFW channel in config file.
+* .bitcoin - Get value of Bitcoin.
 * .help [sound] - Command list. Sound list with sound param.
 
 [Discord JS](https://github.com/hydrabolt/discord.js/)
