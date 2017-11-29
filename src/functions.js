@@ -15,6 +15,7 @@ module.exports = {
       ".gouter",
       ".rosti 'number'",
       ".help sound",
+      ".bitcoin",
     ];
   },
   bm() {
@@ -31,6 +32,29 @@ module.exports = {
           reject(error);
         }
       });
+    });
+  },
+  bitcoin() {
+    return new Promise((resolve, reject) => {
+      request(
+        {
+          url: "https://api.coindesk.com/v1/bpi/currentprice.json",
+          headers: {
+            "User-Agent": "request",
+          },
+        },
+        (error, response, body) => {
+          if (!error && response.statusCode === 200) {
+            const info = JSON.parse(body);
+            const valueUSD = info.bpi.USD.rate_float.toLocaleString("fr-FR", { style: "currency", currency: "USD" });
+            const valueEUR = info.bpi.EUR.rate_float.toLocaleString("fr-FR", { style: "currency", currency: "EUR" });
+
+            resolve([valueUSD, valueEUR]);
+          } else {
+            reject(error);
+          }
+        },
+      );
     });
   },
 };

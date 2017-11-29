@@ -126,6 +126,13 @@ bot.on("message", message => {
     });
   }
 
+  // Command for Bitcoin value
+  if (command === "bitcoin") {
+    tools.bitcoin().then(value => {
+      message.channel.send(`La valeur du bitcoin est de : ${value[0]}, soit ${value[1]}`);
+    });
+  }
+
   // Command joke
   if (command === "gouter") {
     const date = new Date();
