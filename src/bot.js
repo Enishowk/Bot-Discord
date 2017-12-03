@@ -133,6 +133,15 @@ bot.on("message", message => {
     });
   }
 
+  // Command Weather
+  if (command === "meteo") {
+    if (messageOrigin[2] === "demain") {
+      message.channel.send(`https://www.prevision-meteo.ch/uploads/widget/${firstParam}_1.png`);
+    } else {
+      message.channel.send(`https://www.prevision-meteo.ch/uploads/widget/${firstParam}_0.png`);
+    }
+  }
+
   // Command joke
   if (command === "gouter") {
     const date = new Date();
