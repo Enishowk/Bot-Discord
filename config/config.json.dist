@@ -1,0 +1,9 @@
+{
+  "token": "yourToken",
+  "startCommand": ".",
+  "userAdmin": "yourId",
+  "nsfwChan": "nsfwChanId",
+  "redmineUrl": "url.com",
+  "redmineToken": "redmineToken",
+  "redmineId": "userId"
+}

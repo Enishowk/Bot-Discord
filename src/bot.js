@@ -3,9 +3,11 @@ const Discord = require("discord.js");
 const fs = require("fs");
 const randomPuppy = require("random-puppy");
 const ytdl = require("ytdl-core");
+const moment = require("moment");
+const axios = require("axios");
 
 const config = require("../config/config.json");
-const tools = require("./functions");
+const services = require("./services");
 
 const bot = new Discord.Client();
 
@@ -22,12 +24,16 @@ bot.on("message", message => {
   let messageOrigin;
   let command;
   let firstParam;
+  let secondParam;
+  let thirdParam;
 
   // Listen message and parse command and param
   if (message.content.startsWith(config.startCommand)) {
     messageOrigin = message.content.toLowerCase().split(" ");
     command = messageOrigin[0].substring(1);
     firstParam = messageOrigin[1];
+    secondParam = messageOrigin[2];
+    thirdParam = messageOrigin[3];
   }
 
   // Get one random image from a subreddit
@@ -121,21 +127,21 @@ bot.on("message", message => {
   // Command for BM request
   if (command === "bm" && message.channel.nsfw) {
     message.delete();
-    tools.bm().then(urlPhoto => {
+    services.bm().then(urlPhoto => {
       bot.channels.get(config.nsfwChan).send(urlPhoto);
     });
   }
 
   // Command for Bitcoin value
   if (command === "bitcoin") {
-    tools.bitcoin().then(value => {
+    services.bitcoin().then(value => {
       message.channel.send(`La valeur du bitcoin est de : ${value[0]}, soit ${value[1]}`);
     });
   }
 
   // Command Weather
   if (command === "meteo") {
-    if (messageOrigin[2] === "demain") {
+    if (secondParam === "demain") {
       message.channel.send(`https://www.prevision-meteo.ch/uploads/widget/${firstParam}_1.png`);
     } else {
       message.channel.send(`https://www.prevision-meteo.ch/uploads/widget/${firstParam}_0.png`);
@@ -176,16 +182,56 @@ bot.on("message", message => {
       });
       message.author.send(`List : ${arrayOfSound}`);
     } else {
-      message.author.send(tools.help());
+      message.author.send(services.help());
+    }
+  }
+
+  // Get Redmine of month
+  if (command === "redmine") {
+    if (message.author.id === config.userAdmin) {
+      services
+        .redmine(firstParam, secondParam)
+        .then(response => {
+          message.channel.send(response.reverse());
+        })
+        .catch(error => {
+          message.channel.send(`${error.response.status} : ${error.response.statusText}`);
+        });
+    }
+  }
+  if (command === "predmine") {
+    if (message.author.id === config.userAdmin) {
+      services
+        .predmine(firstParam, secondParam, thirdParam)
+        .then(response => {
+          message.channel.send(response);
+        })
+        .catch(error => {
+          message.channel.send(`${error.response.status} : ${error.response.statusText}`);
+        });
     }
   }
 });
 
 // Cron : Execute bm() at 10:20 Monday-Friday
 cron.schedule("20 10 * * 1-5", () => {
-  tools.bm().then(urlPhoto => {
+  services.bm().then(urlPhoto => {
     bot.channels.get(config.nsfwChan).send(urlPhoto);
   });
+});
+
+// Cron : don't forget to do Logtime
+cron.schedule("50 17 * * 1-5", () => {
+  const today = moment().format("YYYY-MM-DD");
+  axios
+    .get(`http://redmine.smartpanda.fr/time_entries.json?spent_on=><${today}|${today}&user_id=${config.redmineId}`, {
+      headers: { "X-Redmine-API-Key": config.redmineToken },
+    })
+    .then(response => {
+      if (response.data.total_count === 0) {
+        bot.fetchUser(config.userAdmin).then(r => r.send("Logtime !"));
+      }
+    });
 });
 
 // log bot
