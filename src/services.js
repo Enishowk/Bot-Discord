@@ -3,14 +3,6 @@ const axios = require("axios");
 const moment = require("moment");
 const config = require("../config/config.json");
 
-const today = moment().format("YYYY-MM-DD");
-const firstDayMonth = moment()
-  .startOf("month")
-  .format("YYYY-MM-DD");
-const lastDayMonth = moment()
-  .endOf("month")
-  .format("YYYY-MM-DD");
-
 module.exports = {
   help() {
     return [
@@ -59,11 +51,24 @@ module.exports = {
       })
       .catch(error => error);
   },
-  redmine(begin = firstDayMonth, end = lastDayMonth) {
+  redmine(begin = null, end = null) {
+    const firstDayMonth =
+      begin ||
+      moment()
+        .startOf("month")
+        .format("YYYY-MM-DD");
+    const lastDayMonth =
+      end ||
+      moment()
+        .endOf("month")
+        .format("YYYY-MM-DD");
     return axios
-      .get(`http://redmine.smartpanda.fr/time_entries.json?spent_on=><${begin}|${end}&user_id=${config.redmineId}`, {
-        headers: { "X-Redmine-API-Key": config.redmineToken },
-      })
+      .get(
+        `http://redmine.smartpanda.fr/time_entries.json?spent_on=><${firstDayMonth}|${lastDayMonth}&user_id=${config.redmineId}`,
+        {
+          headers: { "X-Redmine-API-Key": config.redmineToken },
+        },
+      )
       .then(response => {
         const entries = response.data.time_entries;
         const jourTravaille = response.data.total_count;
@@ -76,13 +81,14 @@ module.exports = {
           resp.push(`${entry.spent_on} > ${entry.hours} > ${entry.activity.name} ${issue} ${entry.comments}`);
         });
 
-        resp.push(`---- Recap de la période du ${begin} au ${end} ----`);
+        resp.push(`---- Recap de la période du ${firstDayMonth} au ${lastDayMonth} ----`);
 
         return resp;
       })
       .catch(error => error);
   },
-  predmine(issueId = "7311", date = today, hours = 8) {
+  predmine(issueId = "7311", date = null, hours = 8) {
+    const now = date || moment().format("YYYY-MM-DD");
     return axios({
       method: "post",
       url: "http://redmine.smartpanda.fr/time_entries.json",
@@ -91,7 +97,7 @@ module.exports = {
         time_entry: {
           project_id: 31,
           issue_id: issueId,
-          spent_on: date,
+          spent_on: now,
           hours,
           activity_id: 9,
           comments: "",
