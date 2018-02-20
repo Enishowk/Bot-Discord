@@ -2,3 +2,4 @@
 Bot-Discord.iml
 node_modules
 config/config.json
+src/sound/

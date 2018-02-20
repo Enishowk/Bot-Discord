@@ -12,7 +12,7 @@ const services = require("./services");
 const bot = new Discord.Client();
 
 bot.on("ready", () => {
-  bot.user.setGame(".help").catch(err => console.error(err));
+  bot.user.setActivity(".help", { type: "LISTENING" }).catch(err => console.error(err));
   console.log("Bot ready"); // eslint-disable-line no-console
 });
 bot.on("disconnected", () => {
@@ -119,9 +119,15 @@ bot.on("message", message => {
   // Send french wiki command with param
   if (command === "wiki") {
     const param = message.content.substring(6, message.content.length);
-    const search = param.replace(/ /g, "_");
-    const url = `https://fr.wikipedia.org/wiki/${search}`;
-    message.channel.send(url);
+    if (param === "") {
+      services.randomWiki().then(url => {
+        message.channel.send(url);
+      });
+    } else {
+      const search = param.replace(/ /g, "_");
+      const url = `https://fr.wikipedia.org/wiki/${search}`;
+      message.channel.send(url);
+    }
   }
 
   // Command for BM request
