@@ -5,6 +5,7 @@ const randomPuppy = require("random-puppy");
 const ytdl = require("ytdl-core");
 const moment = require("moment");
 const axios = require("axios");
+const oneLinerJoke = require("one-liner-joke");
 
 const config = require("../config/config.json");
 const services = require("./services");
@@ -175,6 +176,12 @@ bot.on("message", message => {
   if (command === "rosti") {
     const calcul = parseInt(firstParam, 10) / 20;
     message.channel.send(`Cela fait ENVIRON ${(calcul * 60).toFixed()} Rostis et ${(calcul * 10).toFixed()} steaks.`);
+  }
+
+  // Get random joke
+  if (command === "beshop") {
+    const getRandomJoke = oneLinerJoke.getRandomJoke();
+    message.channel.send(getRandomJoke.body);
   }
 
   // PM command

@@ -22,6 +22,7 @@ Check [PM2 Wiki](https://github.com/Unitech/pm2/wiki) for more command.
 
 ## Command
 
+* .beshop - Get random joke.
 * .bitcoin - Get value of Bitcoin.
 * .bm - Specific command to get a picture from the website bonjourmadame.fr. Don't forget to change ID of your NSFW channel in config file.
 * .gouter - Joke command for french.
