@@ -35,19 +35,30 @@ module.exports = {
   },
   bitcoin() {
     return axios
-      .get("https://api.coindesk.com/v1/bpi/currentprice.json")
+      .get("https://api.coinbase.com/v2/exchange-rates?currency=BTC")
       .then(response => {
-        const info = response.data.bpi;
-        const valueUSD = info.USD.rate_float.toLocaleString("fr-FR", {
+        const info = response.data.data.rates;
+        const valueUSD = Number(info.USD).toLocaleString("fr-FR", {
           style: "currency",
           currency: "USD",
         });
-        const valueEUR = info.EUR.rate_float.toLocaleString("fr-FR", {
+        const valueEUR = Number(info.EUR).toLocaleString("fr-FR", {
           style: "currency",
           currency: "EUR",
         });
 
         return [valueUSD, valueEUR];
+      })
+      .catch(error => error);
+  },
+  randomWiki() {
+    return axios
+      .get("https://fr.wikipedia.org/wiki/Special:Random")
+      .then(response => {
+        const $ = cheerio.load(response.data);
+        const url = $('a[title="Voir le contenu de la page [c]"]').attr("href");
+
+        return `https://fr.wikipedia.org${url}`;
       })
       .catch(error => error);
   },
