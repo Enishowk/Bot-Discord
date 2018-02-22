@@ -11,5 +11,6 @@ module.exports = {
     "linebreak-style": ["error", "unix"],
     "no-underscore-dangle": "off",
     "arrow-parens": ["error", "as-needed"],
+    "no-mixed-operators": "off",
   },
 };
