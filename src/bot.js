@@ -1,9 +1,6 @@
 const Discord = require("discord.js");
-const axios = require("axios");
-const cheerio = require("cheerio");
 const cron = require("node-cron");
 const fs = require("fs");
-const moment = require("moment");
 
 const config = require("../config/config.json");
 
@@ -25,7 +22,7 @@ bot.on("disconnected", () => {
   bot.login(config.token).catch(err => console.error(err));
 });
 
-// Create an event listener for messages
+// Event listener for messages
 bot.on("message", message => {
   const args = message.content.slice(config.startCommand.length).split(/ +/);
   const commandName = args.shift().toLowerCase();
@@ -41,30 +38,26 @@ bot.on("message", message => {
   }
 });
 
-// Cron : Execute bm() at 10:20 Monday-Friday
+// Cron : post BM's picture at 10:20 Monday-Friday
 cron.schedule("20 10 * * 1-5", () => {
-  axios.get("http://dites.bonjourmadame.fr/").then(response => {
-    const $ = cheerio.load(response.data);
-    const urlPhoto = $(".photo.post")
-      .find("img")
-      .attr("src");
-    bot.channels.get(config.nsfwChan).send(urlPhoto);
-  });
+  bot.commands
+    .get("bm")
+    .getURLFromBM()
+    .then(url => {
+      bot.channels.get(config.nsfwChan).send(url);
+    });
 });
 
-// Cron : don't forget to do Logtime
+// Cron : check if Admin has done his logtime
 cron.schedule("50 17 * * 1-5", () => {
-  const today = moment().format("YYYY-MM-DD");
-  axios
-    .get(`http://redmine.smartpanda.fr/time_entries.json?spent_on=><${today}|${today}&user_id=${config.redmineId}`, {
-      headers: { "X-Redmine-API-Key": config.redmineToken },
-    })
-    .then(response => {
-      if (response.data.total_count === 0) {
+  bot.commands
+    .get("redmine")
+    .isLogDayDone()
+    .then(isDone => {
+      if (!isDone) {
         bot.fetchUser(config.userAdmin).then(r => r.send("Logtime !"));
       }
     });
 });
 
-// log bot
 bot.login(config.token);

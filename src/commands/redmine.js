@@ -43,4 +43,21 @@ module.exports = {
         .catch(error => message.channel.send(`${error.response.status} : ${error.response.statusText}`));
     }
   },
+  isLogDayDone() {
+    const today = moment().format("YYYY-MM-DD");
+    return new Promise(resolve => {
+      axios
+        .get(
+          `http://redmine.smartpanda.fr/time_entries.json?spent_on=><${today}|${today}&user_id=${config.redmineId}`,
+          {
+            headers: { "X-Redmine-API-Key": config.redmineToken },
+          },
+        )
+        .then(response => {
+          if (response.data.total_count === 0) {
+            resolve(false);
+          }
+        });
+    });
+  },
 };
