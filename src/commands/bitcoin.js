@@ -1,4 +1,5 @@
 const axios = require("axios");
+const Discord = require("discord.js");
 
 module.exports = {
   name: "bitcoin",
@@ -17,7 +18,13 @@ module.exports = {
           currency: "EUR",
         });
 
-        message.channel.send(`La valeur du bitcoin est de : ${valueUSD}, soit ${valueEUR}`);
+        const richResponse = new Discord.RichEmbed()
+          .setColor("#f39c12")
+          .addField("BITCOIN", `${valueUSD}, soit ${valueEUR}`)
+          .setThumbnail("https://cdn6.aptoide.com/imgs/6/7/d/67da2c96adfc7dca9614752529d80630_icon.png?w=240")
+          .setTimestamp();
+
+        message.channel.send({ embed: richResponse });
       })
       .catch(error => error);
   },
