@@ -1,10 +1,11 @@
-const oneLinerJoke = require("one-liner-joke");
+const axios = require("axios");
 
 module.exports = {
   name: "beshop",
   description: "Return one joke",
   execute(message) {
-    const getRandomJoke = oneLinerJoke.getRandomJoke();
-    message.channel.send(getRandomJoke.body);
+    axios.get("http://api.yomomma.info/").then(response => {
+      message.channel.send(response.data.joke);
+    });
   },
 };

@@ -1,6 +1,6 @@
 {
   "name": "bot",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "Bot for Discord",
   "main": "src/bot.js",
   "scripts": {
@@ -20,7 +20,6 @@
     "ffmpeg-binaries": "^3.2.2",
     "moment": "^2.20.1",
     "node-cron": "^1.2.1",
-    "one-liner-joke": "^1.0.0",
     "opusscript": "0.0.4",
     "random-puppy": "^1.1.0",
     "unique-random-array": "^1.0.0",
