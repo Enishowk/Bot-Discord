@@ -3,6 +3,7 @@
   "startCommand": ".",
   "userAdmin": "yourId",
   "nsfwChan": "nsfwChanId",
+  "guildID": "guildID",
   "redmineUrl": "url.com",
   "redmineToken": "redmineToken",
   "redmineId": "userId"

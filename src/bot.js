@@ -4,7 +4,7 @@ const fs = require("fs");
 
 const config = require("../config/config.json");
 
-const bot = new Discord.Client();
+const bot = new Discord.Client({ autoReconnect: true });
 bot.commands = new Discord.Collection();
 
 // Init all command
@@ -31,7 +31,7 @@ bot.on("message", message => {
 
   const command = bot.commands.get(commandName);
   try {
-    command.execute(message, args);
+    command.execute(message, args, bot);
   } catch (error) {
     console.error(error);
     message.reply("there was an error trying to execute that command!");
