@@ -2,21 +2,20 @@
 
 ## Installation
 
-* **Don't forget to rename `config.json.dist` to `config.json` and add your Token.**
-* Create a sound folder with your different sound.
-
-Install the dependencies and start the server.
-
 ```sh
+$ git clone https://github.com/Enishowk/Bot-Discord.git
+$ cd Bot-Discord
 $ npm install
 $ npm install -g ytdl
-$ node bot.js
 ```
+
+* **Don't forget to rename `config.json.dist` to `config.json` and add your Token.**
+* Create a sound folder with your different sound.
 
 To start the bot in background with pm2.
 
 ```sh
-$ pm2 start bot.js
+$ pm2 start src/bot.js
 ```
 
 Check [PM2 Wiki](https://github.com/Unitech/pm2/wiki) for more command.
@@ -36,7 +35,21 @@ Check [PM2 Wiki](https://github.com/Unitech/pm2/wiki) for more command.
 * .say [message] - Bot repeat your message.
 * .sb [subreddit] - Get random picture from Subreddit (Default 'aww' subreddit).
 * .stop - Kick bot from voice channel.
+* .tr - Send random question from Trivial Pursuit.
 * .wiki [subject] - Link page from wikipedia.
 * .yt [link] - Play a video from YouTube.
+
+## Troubleshooting
+
+ERR! stack Error: not found: make 
+```sh
+$ sudo apt-get install build-essential
+```
+    
+Bot don't play sound
+```sh
+$ sudo apt-get install ffmpeg
+$ npm install node-opus
+```
 
 [Discord JS](https://github.com/hydrabolt/discord.js/)
