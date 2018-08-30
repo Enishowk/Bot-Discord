@@ -24,6 +24,7 @@ bot.on("disconnected", () => {
 
 // Event listener for messages
 bot.on("message", message => {
+  if (!message.content.startsWith(config.startCommand)) return;
   const args = message.content.slice(config.startCommand.length).split(/ +/);
   const commandName = args.shift().toLowerCase();
 
