@@ -1,11 +1,10 @@
 {
   "name": "bot",
-  "version": "2.4.0",
+  "version": "3.0.0",
   "description": "Bot for Discord",
   "main": "src/bot.js",
   "repository": "https://github.com/Enishowk/Bot-Discord.git",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "bot": "node src/bot.js",
     "pm2:bot": "pm2 start src/bot.js",
     "lint": "./node_modules/eslint/bin/eslint.js . --fix"
@@ -14,25 +13,25 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.18.0",
-    "bufferutil": "^3.0.5",
+    "bufferutil": "^4.0.0",
     "cheerio": "^1.0.0-rc.2",
-    "discord.js": "^11.3.2",
+    "discord.js": "^11.4.2",
     "erlpack": "github:hammerandchisel/erlpack",
     "libsodium-wrappers": "^0.7.3",
-    "moment": "^2.22.1",
-    "node-cron": "^1.2.1",
+    "moment": "^2.22.2",
+    "node-cron": "^2.0.3",
     "node-opus": "^0.3.0",
     "opusscript": "0.0.6",
     "random-puppy": "^1.1.0",
     "unirest": "^0.5.1",
-    "uws": "^10.148.0",
-    "ytdl": "^0.10.1",
-    "ytdl-core": "^0.20.4"
+    "uws": "^10.148.2",
+    "ytdl": "^0.10.4",
+    "ytdl-core": "^0.27.0"
   },
   "devDependencies": {
-    "eslint": "^4.19.1",
-    "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-plugin-import": "^2.12.0",
-    "prettier": "^1.7.4"
+    "eslint": "^5.8.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "prettier": "^1.14.3"
   }
 }

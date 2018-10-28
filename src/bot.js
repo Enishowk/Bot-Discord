@@ -49,16 +49,4 @@ cron.schedule("20 10 * * 1-5", () => {
     });
 });
 
-// Cron : check if Admin has done his logtime
-cron.schedule("50 17 * * 1-5", () => {
-  bot.commands
-    .get("redmine")
-    .isLogDayDone()
-    .then(isDone => {
-      if (!isDone) {
-        bot.fetchUser(config.userAdmin).then(r => r.send("Logtime !"));
-      }
-    });
-});
-
 bot.login(config.token);

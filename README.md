@@ -29,9 +29,7 @@ Check [PM2 Wiki](https://github.com/Unitech/pm2/wiki) for more command.
 * .help [sound] - Command list. Sound list with sound param.
 * .meteo [city] - Return Weather for City param.
 * .play [sound] - Play a sound in Voice channel.
-* .predmine [projectID] [date] [hour] - Post a new time_entries in Redmine.
 * .rand [number] - Simple rand command.
-* .redmine [date] [date] - Get logtime between date.
 * .say [message] - Bot repeat your message.
 * .sb [subreddit] - Get random picture from Subreddit (Default 'aww' subreddit).
 * .stop - Kick bot from voice channel.
@@ -41,11 +39,11 @@ Check [PM2 Wiki](https://github.com/Unitech/pm2/wiki) for more command.
 
 ## Troubleshooting
 
-ERR! stack Error: not found: make 
+ERR! stack Error: not found: make
 ```sh
 $ sudo apt-get install build-essential
 ```
-    
+
 Bot don't play sound
 ```sh
 $ sudo apt-get install ffmpeg
