@@ -1,7 +1,18 @@
 # ChangeLog
 
+## 3.1.0
+
+###### _06/12/2018_
+
+### Enhancements
+
+- [commands] Remove BM
+
+### Bug fixes
+
 ## 3.0.0
-###### *29/10/2018*
+
+###### _29/10/2018_
 
 ### Enhancements
 

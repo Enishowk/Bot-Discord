@@ -1,6 +1,6 @@
 {
   "name": "bot",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "Bot for Discord",
   "main": "src/bot.js",
   "repository": "https://github.com/Enishowk/Bot-Discord.git",

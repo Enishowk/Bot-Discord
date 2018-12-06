@@ -39,14 +39,4 @@ bot.on("message", message => {
   }
 });
 
-// Cron : post BM's picture at 10:20 Monday-Friday
-cron.schedule("20 10 * * 1-5", () => {
-  bot.commands
-    .get("bm")
-    .getURLFromBM()
-    .then(url => {
-      bot.channels.get(config.nsfwChan).send(url);
-    });
-});
-
 bot.login(config.token);
