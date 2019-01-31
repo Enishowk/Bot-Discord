@@ -34,6 +34,7 @@ Check [PM2 Wiki](https://github.com/Unitech/pm2/wiki) for more command.
 - .stop - Kick bot from voice channel.
 - .tr - Send random question from Trivial Pursuit.
 - .wiki [subject] - Link page from wikipedia.
+- .yesno - Return yes, or no.
 - .yt [link] - Play a video from YouTube.
 
 ## Troubleshooting
