@@ -1,5 +1,4 @@
 const Discord = require("discord.js");
-const cron = require("node-cron");
 const fs = require("fs");
 
 const config = require("../config/config.json");
