@@ -3,5 +3,6 @@
   "startCommand": ".",
   "userAdmin": "yourId",
   "nsfwChan": "nsfwChanId",
-  "guildID": "guildID"
+  "guildID": "guildID",
+  "riotKey": "riotApiKey"
 }

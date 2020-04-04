@@ -1,5 +1,13 @@
 # ChangeLog
 
+## 3.3.0 (_04/04/2020_)
+
+### Enhancements
+
+- [commands] Add lol command.
+
+---
+
 ## 3.2.2 (_04/04/2020_)
 
 ### Enhancements

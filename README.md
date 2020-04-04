@@ -26,6 +26,7 @@ Check [PM2 Wiki](https://github.com/Unitech/pm2/wiki) for more command.
 - .bitcoin - Get value of Bitcoin.
 - .gouter - Joke command for french.
 - .help [sound] - Command list. Sound list with sound param.
+- .lol [name] - Return matches history.
 - .meteo [city] - Return Weather for City param.
 - .play [sound] - Play a sound in Voice channel.
 - .rand [number] - Simple rand command.
