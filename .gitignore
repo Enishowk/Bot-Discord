@@ -4,4 +4,3 @@ node_modules
 config/config.json
 src/sound/
 .vscode/
-package-lock.json

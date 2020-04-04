@@ -1,6 +1,6 @@
 {
   "name": "bot",
-  "version": "3.2.1",
+  "version": "3.2.2",
   "description": "Bot for Discord",
   "main": "src/bot.js",
   "repository": "https://github.com/Enishowk/Bot-Discord.git",
@@ -12,26 +12,26 @@
   "author": "Enishowk",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.19.2",
     "bufferutil": "^4.0.1",
-    "cheerio": "^1.0.0-rc.2",
-    "discord.js": "^11.4.2",
+    "cheerio": "^1.0.0-rc.3",
+    "discord.js": "^12.1.1",
     "erlpack": "github:hammerandchisel/erlpack",
-    "libsodium-wrappers": "^0.7.4",
+    "libsodium-wrappers": "^0.7.6",
     "moment": "^2.24.0",
     "node-cron": "^2.0.3",
-    "node-opus": "^0.3.1",
-    "opusscript": "0.0.6",
+    "node-opus": "^0.3.3",
+    "opusscript": "0.0.7",
     "random-puppy": "^1.1.0",
     "unirest": "^0.6.0",
-    "uws": "^10.148.2",
-    "ytdl": "^0.10.5",
-    "ytdl-core": "^0.27.0"
+    "uws": "^100.0.1",
+    "ytdl": "^1.2.0",
+    "ytdl-core": "^2.0.1"
   },
   "devDependencies": {
-    "eslint": "^5.15.1",
-    "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-plugin-import": "^2.16.0",
-    "prettier": "^1.16.4"
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2",
+    "prettier": "^2.0.2"
   }
 }

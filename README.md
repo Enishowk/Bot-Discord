@@ -52,4 +52,12 @@ $ sudo apt-get install ffmpeg
 $ npm install node-opus
 ```
 
+Issue with node-gyp (Catalina)
+```sh
+$ sudo rm -rf $(xcode-select -print-path)
+$ xcode-select --install
+$ /usr/sbin/pkgutil --packages | grep CL
+$ sudo npm install -g node-gyp
+```
+
 [Discord JS](https://github.com/hydrabolt/discord.js/)
