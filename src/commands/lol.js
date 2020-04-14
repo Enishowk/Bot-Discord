@@ -49,11 +49,14 @@ module.exports = {
           responsePromises.push(getMatchData(champions.data.data, match));
         }
         const responses = await Promise.all(responsePromises);
+        const tier = accountData && accountData.data && accountData.data[0] && accountData.data[0].tier;
+        const rank = accountData && accountData.data && accountData.data[0] && accountData.data[0].rank;
+        const leaguePoints = accountData && accountData.data && accountData.data[0] && accountData.data[0].leaguePoints;
 
         message.channel.send(
-          `History of ${name} (${accountData.data[0].tier} ${accountData.data[0].rank} - ${
-            accountData.data[0].leaguePoints
-          }LP) : ${responses.join("")}`,
+          `History of ${name} (${tier || " No rank"} ${rank || ""} ${
+            leaguePoints ? `${leaguePoints}LP` : ""
+          }) : ${responses.join("")}`,
         );
       } catch (error) {
         message.channel.send("Erreur");

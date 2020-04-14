@@ -1,5 +1,13 @@
 # ChangeLog
 
+## 3.3.1 (_04/04/2020_)
+
+### Bug fixes
+
+- [lol] Fix error when player has no rank
+
+---
+
 ## 3.3.0 (_04/04/2020_)
 
 ### Enhancements
