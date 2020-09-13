@@ -1,5 +1,11 @@
 # ChangeLog
 
+## 3.4.0 (_13/09/2020_)
+
+- [packages] update
+
+---
+
 ## 3.3.1 (_04/04/2020_)
 
 ### Bug fixes
