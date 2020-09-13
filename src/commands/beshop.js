@@ -3,9 +3,9 @@ const axios = require("axios");
 module.exports = {
   name: "beshop",
   description: "Return one joke",
-  execute(message) {
-    axios.get("http://api.yomomma.info/").then(response => {
-      message.channel.send(response.data.joke);
-    });
+  async execute(message) {
+    const response = await axios.get("http://api.yomomma.info/")
+
+    message.channel.send(response.data.joke);
   },
 };

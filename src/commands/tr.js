@@ -20,7 +20,7 @@ module.exports = {
         const quiz = response.data.results[0];
         const answers = sortAnswers(quiz);
 
-        const richResponse = new Discord.RichEmbed()
+        const richResponse = new Discord.MessageEmbed()
           .setColor("#7ECEFD")
           .setTitle(decodeChar(quiz.question))
           .addBlankField(true)
