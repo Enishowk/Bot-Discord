@@ -1,5 +1,7 @@
 const Discord = require("discord.js");
 const fs = require("fs");
+const CronJob = require("cron").CronJob;
+const axios = require("axios");
 
 const config = require("../config/config.json");
 
@@ -37,5 +39,21 @@ bot.on("message", async message => {
     message.reply("there was an error trying to execute that command!");
   }
 });
+
+const checkApi = async () => {
+  const { data } = await axios.get(
+    "https://api-prod.nvidia.com/direct-sales-shop/DR/products/fr_fr/EUR/5438795200"
+  );
+  bot.users.fetch(config.userAdmin).then(user => user.send("EN STOCK !!"))
+  data.products.product.forEach((element) => {
+    if (element.inventoryStatus.productIsInStock === "true") {
+      bot.users.fetch(config.userAdmin).then(user => user.send("EN STOCK !!"))
+    }
+  });
+};
+const job = new CronJob("*/30 * * * * *", async function () {
+  checkApi();
+});
+job.start();
 
 bot.login(config.token);
