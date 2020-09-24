@@ -44,7 +44,6 @@ const checkApi = async () => {
   const { data } = await axios.get(
     "https://api-prod.nvidia.com/direct-sales-shop/DR/products/fr_fr/EUR/5438795200"
   );
-  bot.users.fetch(config.userAdmin).then(user => user.send("EN STOCK !!"))
   data.products.product.forEach((element) => {
     if (element.inventoryStatus.productIsInStock === "true") {
       bot.users.fetch(config.userAdmin).then(user => user.send("EN STOCK !!"))
