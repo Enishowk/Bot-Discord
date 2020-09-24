@@ -46,7 +46,7 @@ const checkApi = async () => {
   );
   data.products.product.forEach((element) => {
     if (element.inventoryStatus.productIsInStock === "true") {
-      bot.users.fetch(config.userAdmin).then(user => user.send("EN STOCK !!"))
+      bot.users.fetch(config.userAdmin).then(user => user.send("https://www.nvidia.com/fr-fr/geforce/graphics-cards/30-series/rtx-3080/ !!"))
     }
   });
 };
