@@ -2,6 +2,7 @@ const Discord = require("discord.js");
 const fs = require("fs");
 const CronJob = require("cron").CronJob;
 const axios = require("axios");
+const moment = require("moment")
 
 const config = require("../config/config.json");
 
@@ -40,13 +41,18 @@ bot.on("message", async message => {
   }
 });
 
+let lastMessage = undefined
 const checkApi = async () => {
   const { data } = await axios.get(
     "https://api-prod.nvidia.com/direct-sales-shop/DR/products/fr_fr/EUR/5438795200"
   );
   data.products.product.forEach((element) => {
-    if (element.inventoryStatus.productIsInStock === "true") {
-      bot.users.fetch(config.userAdmin).then(user => user.send("https://www.nvidia.com/fr-fr/geforce/graphics-cards/30-series/rtx-3080/ !!"))
+    if (element.inventoryStatus.productIsInStock === "true" && element.inventoryStatus.status !== "PRODUCT_INVENTORY_OUT_OF_STOCK") {
+      console.log(lastMessage && lastMessage.format("hh:mm:ss"))
+      if (lastMessage === undefined || moment().isAfter(lastMessage.clone().add(10, 'm'))) {
+        lastMessage = moment();
+        bot.users.fetch(config.userAdmin).then(user => user.send("https://www.nvidia.com/fr-fr/geforce/graphics-cards/30-series/rtx-3080/ !!"))
+      }
     }
   });
 };
