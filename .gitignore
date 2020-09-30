@@ -1,6 +1,6 @@
 .idea/
 Bot-Discord.iml
 node_modules
-config/config.json
+.env
 src/sound/*
 .vscode/

@@ -5,8 +5,7 @@
   "main": "src/bot.js",
   "repository": "https://github.com/Enishowk/Bot-Discord.git",
   "scripts": {
-    "bot": "node src/bot.js",
-    "pm2:bot": "pm2 start src/bot.js",
+    "start": "node src/bot.js",
     "lint": "./node_modules/eslint/bin/eslint.js . --fix"
   },
   "author": "Enishowk",
@@ -17,6 +16,7 @@
     "cheerio": "^1.0.0-rc.3",
     "cron": "^1.8.2",
     "discord.js": "^12.3.1",
+    "dotenv": "^8.2.0",
     "moment": "^2.28.0",
     "node-cron": "^2.0.3",
     "random-puppy": "^1.1.0",

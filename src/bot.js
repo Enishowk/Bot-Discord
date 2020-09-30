@@ -1,10 +1,9 @@
+require('dotenv').config()
 const Discord = require("discord.js");
 const fs = require("fs");
 const CronJob = require("cron").CronJob;
 const axios = require("axios");
 const moment = require("moment")
-
-const config = require("../config/config.json");
 
 const bot = new Discord.Client({ autoReconnect: true });
 bot.commands = new Discord.Collection();
@@ -21,13 +20,13 @@ bot.on("ready", () => {
   console.log("Bot ready");
 });
 bot.on("disconnected", () => {
-  bot.login(config.token).catch(err => console.error(err));
+  bot.login(process.env.TOKEN).catch(err => console.error(err));
 });
 
 // Event listener for messages
 bot.on("message", async message => {
-  if (!message.content.startsWith(config.startCommand)) return;
-  const args = message.content.slice(config.startCommand.length).split(/ +/);
+  if (!message.content.startsWith(process.env.START_COMMAND)) return;
+  const args = message.content.slice(process.env.START_COMMAND.length).split(/ +/);
   const commandName = args.shift().toLowerCase();
 
   if (!bot.commands.has(commandName)) return;
@@ -51,7 +50,7 @@ const checkApi = async () => {
       console.log(lastMessage && lastMessage.format("hh:mm:ss"))
       if (lastMessage === undefined || moment().isAfter(lastMessage.clone().add(10, 'm'))) {
         lastMessage = moment();
-        bot.users.fetch(config.userAdmin).then(user => user.send("https://www.nvidia.com/fr-fr/geforce/graphics-cards/30-series/rtx-3080/ !!"))
+        bot.users.fetch(process.env.USER_ADMIN).then(user => user.send("https://www.nvidia.com/fr-fr/geforce/graphics-cards/30-series/rtx-3080/ !!"))
       }
     }
   });
@@ -61,4 +60,4 @@ const job = new CronJob("*/30 * * * * *", async function () {
 });
 job.start();
 
-bot.login(config.token);
+bot.login(process.env.TOKEN);
