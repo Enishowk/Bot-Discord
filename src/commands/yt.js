@@ -1,5 +1,4 @@
 const ytdl = require("ytdl-core");
-const config = require("../../config/config.json");
 
 module.exports = {
   name: "yt",
@@ -12,7 +11,7 @@ module.exports = {
 
       // If already in channel, change music
       if (bot.voiceConnections.size === 1) {
-        bot.voiceConnections.get(config.guildID).playStream(stream, streamOptions);
+        bot.voiceConnections.get(process.env.GUILD_ID).playStream(stream, streamOptions);
       } else {
         voiceChannel
           .join()
@@ -24,7 +23,7 @@ module.exports = {
             let intervalId = null;
             const isStreamOn = () => {
               // If bot is connected but not speaking.
-              if (bot.voiceConnections.size > 0 && !bot.voiceConnections.get(config.guildID).speaking) {
+              if (bot.voiceConnections.size > 0 && !bot.voiceConnections.get(process.env.GUILD_ID).speaking) {
                 clearInterval(intervalId);
                 voiceChannel.leave();
               }

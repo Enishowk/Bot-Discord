@@ -1,8 +1,0 @@
-{
-  "token": "yourToken",
-  "startCommand": ".",
-  "userAdmin": "yourId",
-  "nsfwChan": "nsfwChanId",
-  "guildID": "guildID",
-  "riotKey": "riotApiKey"
-}

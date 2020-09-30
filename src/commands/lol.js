@@ -1,9 +1,8 @@
 const axios = require("axios");
-const config = require("../../config/config.json");
 
 const getMatchData = async (champions, match) => {
   const response = await axios.get(
-    `https://euw1.api.riotgames.com/lol/match/v4/matches/${match.gameId}?api_key=${config.riotKey}`,
+    `https://euw1.api.riotgames.com/lol/match/v4/matches/${match.gameId}?api_key=${process.env.RIOT_KEY}`,
   );
 
   const stat = response.data.participants.find((participant) => participant.championId === match.champion);
@@ -34,13 +33,13 @@ module.exports = {
         const name = args[0];
         const champions = await axios.get("https://ddragon.leagueoflegends.com/cdn/10.7.1/data/en_US/champion.json");
         const responseSumm = await axios.get(
-          `https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${name}?api_key=${config.riotKey}`,
+          `https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${name}?api_key=${process.env.RIOT_KEY}`,
         );
         const responseMatches = await axios.get(
-          `https://euw1.api.riotgames.com/lol/match/v4/matchlists/by-account/${responseSumm.data.accountId}?api_key=${config.riotKey}`,
+          `https://euw1.api.riotgames.com/lol/match/v4/matchlists/by-account/${responseSumm.data.accountId}?api_key=${process.env.RIOT_KEY}`,
         );
         const accountData = await axios.get(
-          `https://euw1.api.riotgames.com/lol/league/v4/entries/by-summoner/${responseSumm.data.id}?api_key=${config.riotKey}`,
+          `https://euw1.api.riotgames.com/lol/league/v4/entries/by-summoner/${responseSumm.data.id}?api_key=${process.env.RIOT_KEY}`,
         );
 
         const responsePromises = [];
