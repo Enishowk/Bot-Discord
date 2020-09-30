@@ -42,20 +42,24 @@ bot.on("message", async message => {
 
 let lastMessage = undefined
 const checkApi = async () => {
-  const { data } = await axios.get(
-    "https://api-prod.nvidia.com/direct-sales-shop/DR/products/fr_fr/EUR/5438795200"
-  );
-  data.products.product.forEach((element) => {
-    if (element.inventoryStatus.productIsInStock === "true" && element.inventoryStatus.status !== "PRODUCT_INVENTORY_OUT_OF_STOCK") {
-      console.log(lastMessage && lastMessage.format("hh:mm:ss"))
-      if (lastMessage === undefined || moment().isAfter(lastMessage.clone().add(10, 'm'))) {
-        lastMessage = moment();
-        bot.users.fetch(process.env.USER_ADMIN).then(user => user.send("https://www.nvidia.com/fr-fr/geforce/graphics-cards/30-series/rtx-3080/ !!"))
+  try {
+    const { data } = await axios.get(
+      "https://api-prod.nvidia.com/direct-sales-shop/DR/products/fr_fr/EUR/5438795200"
+    );
+    data.products.product.forEach((element) => {
+      if (element.inventoryStatus.productIsInStock === "true" && element.inventoryStatus.status !== "PRODUCT_INVENTORY_OUT_OF_STOCK") {
+        console.log(lastMessage && lastMessage.format("hh:mm:ss"))
+        if (lastMessage === undefined || moment().isAfter(lastMessage.clone().add(10, 'm'))) {
+          lastMessage = moment();
+          bot.users.fetch(process.env.USER_ADMIN).then(user => user.send("https://www.nvidia.com/fr-fr/geforce/graphics-cards/30-series/rtx-3080/ !!"))
+        }
       }
-    }
-  });
+    });
+  } catch (error) {
+    console.error("ERROR:", error.message)
+  }
 };
-const job = new CronJob("*/30 * * * * *", async function () {
+const job = new CronJob("* * * * * *", async function () {
   checkApi();
 });
 job.start();
