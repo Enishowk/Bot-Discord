@@ -56,10 +56,10 @@ const checkApi = async () => {
       }
     });
   } catch (error) {
-    console.error("ERROR:", error.message)
+    console.error("ERROR CRON:", error.message)
   }
 };
-const job = new CronJob("* * * * * *", async function () {
+const job = new CronJob("0 * * * * *", async function () {
   checkApi();
 });
 job.start();
