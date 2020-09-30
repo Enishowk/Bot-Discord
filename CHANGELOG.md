@@ -1,6 +1,12 @@
 # ChangeLog
 
-## 3.4.0 (_13/09/2020_)
+## 5.0.0 (_30/09/2020_)
+
+- [config] Change config to a .env file to deploy on Heroku easily
+
+---
+
+## 4.0.0 (_13/09/2020_)
 
 - [packages] update
 
