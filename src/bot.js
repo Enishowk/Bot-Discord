@@ -1,4 +1,4 @@
-require('dotenv').config()
+require("dotenv").config();
 const Discord = require("discord.js");
 const fs = require("fs");
 
@@ -7,21 +7,21 @@ bot.commands = new Discord.Collection();
 
 // Init all command
 const commandFiles = fs.readdirSync("./src/commands/");
-commandFiles.forEach(file => {
+commandFiles.forEach((file) => {
   const command = require(`./commands/${file}`);
   bot.commands.set(command.name, command);
 });
 
 bot.on("ready", () => {
-  bot.user.setActivity(".help", { type: "LISTENING" }).catch(err => console.error(err));
+  bot.user.setActivity(".help", { type: "LISTENING" }).catch((err) => console.error(err));
   console.log("Bot ready");
 });
 bot.on("disconnected", () => {
-  bot.login(process.env.TOKEN).catch(err => console.error(err));
+  bot.login(process.env.TOKEN).catch((err) => console.error(err));
 });
 
 // Event listener for messages
-bot.on("message", async message => {
+bot.on("message", async (message) => {
   if (!message.content.startsWith(process.env.START_COMMAND)) return;
   const args = message.content.slice(process.env.START_COMMAND.length).split(/ +/);
   const commandName = args.shift().toLowerCase();
