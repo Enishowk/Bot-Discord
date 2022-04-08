@@ -17,7 +17,7 @@
     "cron": "^1.8.2",
     "discord.js": "^12.3.1",
     "dotenv": "^8.2.0",
-    "moment": "^2.28.0",
+    "moment": "^2.29.2",
     "node-cron": "^2.0.3",
     "pretty-bytes": "^5.5.0",
     "random-puppy": "^1.1.0",
